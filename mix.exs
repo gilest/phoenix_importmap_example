@@ -38,7 +38,7 @@ defmodule PhoenixImportmapExample.MixProject do
       {:phoenix_live_view, "~> 1.0.0"},
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
+      {:phoenix_importmap, "~> 0.4.0"},
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
@@ -64,11 +64,11 @@ defmodule PhoenixImportmapExample.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
-      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind phoenix_importmap_example", "esbuild phoenix_importmap_example"],
+      "assets.setup": ["tailwind.install --if-missing"],
+      "assets.build": ["tailwind phoenix_importmap_example", "phoenix_importmap.copy"],
       "assets.deploy": [
         "tailwind phoenix_importmap_example --minify",
-        "esbuild phoenix_importmap_example --minify",
+        "phoenix_importmap.copy",
         "phx.digest"
       ]
     ]
