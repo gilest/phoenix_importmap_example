@@ -24,15 +24,13 @@ config :phoenix_importmap_example, PhoenixImportmapExampleWeb.Endpoint,
   pubsub_server: PhoenixImportmapExample.PubSub,
   live_view: [signing_salt: "xtBcLDLp"]
 
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.17.11",
-  phoenix_importmap_example: [
-    args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
-    cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ]
+config :phoenix_importmap, :importmap, %{
+  app: "/assets/js/app.js",
+  topbar: "/assets/vendor/topbar.js",
+  phoenix_html: "/deps/phoenix_html/priv/static/phoenix_html.js",
+  phoenix: "/deps/phoenix/priv/static/phoenix.mjs",
+  phoenix_live_view: "/deps/phoenix_live_view/priv/static/phoenix_live_view.esm.js"
+}
 
 # Configure tailwind (the version is required)
 config :tailwind,

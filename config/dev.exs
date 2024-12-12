@@ -15,8 +15,7 @@ config :phoenix_importmap_example, PhoenixImportmapExampleWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "ZZVd0c5EY97FmgdCZh1LBu3DsJcUhgjU26BjyjPUHnnmzkoZgBN0m1qF8kh6FaO8",
   watchers: [
-    esbuild:
-      {Esbuild, :install_and_run, [:phoenix_importmap_example, ~w(--sourcemap=inline --watch)]},
+    assets: {PhoenixImportmap, :copy_and_watch, [~w(/assets)]},
     tailwind: {Tailwind, :install_and_run, [:phoenix_importmap_example, ~w(--watch)]}
   ]
 
